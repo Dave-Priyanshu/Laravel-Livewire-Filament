@@ -5,16 +5,10 @@
 				<div class="footer-widget">
 					<h5 class="mb-4 text-primary font-secondary">Service</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="service-details.html">Digital Marketing</a>
+						@foreach (getServices() as $service)
+						<li class="mb-2"><a wire:navigate href="{{ route('serviceDetailPage',$service->id) }}">{{ $service->title }}</a>
 						</li>
-						<li class="mb-2"><a href="service-details.html">Web Design</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Logo Design</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">Graphic Design</a>
-						</li>
-						<li class="mb-2"><a href="service-details.html">SEO</a>
-						</li>
+						@endforeach
 					</ul>
 				</div>
 			</div>
