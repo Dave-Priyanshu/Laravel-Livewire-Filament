@@ -6,6 +6,7 @@ use App\Livewire\ShowArticales;
 use App\Livewire\ShowFaq;
 use App\Livewire\ShowHome;
 use App\Livewire\ShowMembers;
+use App\Livewire\ShowPage;
 use App\Livewire\ShowService;
 use App\Livewire\ShowServicePage;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,5 @@ Route::get('/articale/{id}',ArticaleDetail::class)->name('articaleDetail');
 // FAQ Page route
 Route::get('/faqs',ShowFaq::class)->name('faqPage');
 
+// Pages Route
+Route::get('/page/{id}',ShowPage::class)->name('ShowPage');

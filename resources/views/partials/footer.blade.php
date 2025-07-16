@@ -22,13 +22,13 @@
 				<div class="footer-widget">
 					<h5 class="mb-4 text-primary font-secondary">Quick Links</h5>
 					<ul class="list-unstyled">
-						<li class="mb-2"><a href="#!">About Us</a>
+						<li class="mb-2"><a wire:navigate href="{{ route('ShowPage',2)}}">About Us</a>
 						</li>
-						<li class="mb-2"><a href="#!">Contact Us</a>
+						<li class="mb-2"><a wire:navigate href="#!">Contact Us</a>
 						</li>
-						<li class="mb-2"><a href="#!">Blog</a>
+						<li class="mb-2"><a wire:navigate href="{{ route('articalePage') }}">Blog</a>
 						</li>
-						<li class="mb-2"><a href="#!">Team</a>
+						<li class="mb-2"><a wire:navigate href="{{ route('membersPage') }}">Team</a>
 						</li>
 					</ul>
 				</div>
@@ -37,9 +37,9 @@
 				<div class="footer-widget">
 					<h5 class="mb-4 text-primary font-secondary">Other Links</h5>
 					<ul class="list-unstyled">
-						<li class="list-inline-item me-4"><a class="text-black" href="privacy-policy.html">Privacy Policy</a>
+						<li class="list-inline-item me-4"><a class="text-black" href="{{ route('ShowPage',1)}}">Privacy Policy</a>
                         </li>
-						<li class="list-inline-item me-4"><a class="text-black" href="terms.html">Terms &amp; Conditions</a>
+						<li class="list-inline-item me-4"><a class="text-black" href="{{ route('ShowPage',3)}}">Terms &amp; Conditions</a>
                         </li>
 					</ul>
 				</div>
