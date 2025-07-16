@@ -3,6 +3,7 @@
 use App\Livewire\ArticaleDetail;
 use App\Livewire\Faq;
 use App\Livewire\ShowArticales;
+use App\Livewire\ShowContactPage;
 use App\Livewire\ShowFaq;
 use App\Livewire\ShowHome;
 use App\Livewire\ShowMembers;
@@ -29,3 +30,6 @@ Route::get('/faqs',ShowFaq::class)->name('faqPage');
 
 // Pages Route
 Route::get('/page/{id}',ShowPage::class)->name('ShowPage');
+
+// Contact Route
+Route::get('/contact',ShowContactPage::class)->name('ShowContactPage');
