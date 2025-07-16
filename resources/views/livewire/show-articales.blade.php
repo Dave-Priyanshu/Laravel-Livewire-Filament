@@ -52,8 +52,8 @@
 								</div>
 								<div class="pt-4">
 									<p class="mb-3">{{ $articale->created_at->format('d M, Y')  }}</p>
-									<h2 class="h4"><a class="text-black" href="blog-details.html">{{ $articale->title }}</a></h2>
-									<p>{!! $articale->content !!}</p> <a href="blog-details.html" class="text-primary fw-bold" aria-label="Read the full article by clicking here">Read More</a>
+									<h2 class="h4"><a wire:navigate class="text-black" href="{{ route('articaleDetail',$articale->id) }}">{{ $articale->title }}</a></h2>
+									<p>{!! $articale->content !!}</p> <a wire:navigate href="{{ route('articaleDetail',$articale->id) }}" class="text-primary fw-bold" aria-label="Read the full article by clicking here">Read More</a>
 								</div>
 							</article>
 						</div>
@@ -76,7 +76,7 @@
 
                     @foreach ($categories as $category)
 					<ul class="list-unstyled widget-list">			
-						<li><a href="#!">{{ $category->name }}<small class="ml-auto">({{ $category->articles->count() }})</small></a>
+						<li><a wire:navigate href="{{ route('articalePage').'?categorySlug='.$category->slug }}">{{ $category->name }}<small class="ml-auto">({{ $category->articles->count() }})</small></a>
 						</li>			
 					</ul>
                     @endforeach
@@ -107,19 +107,19 @@
 				<div class="widget">
 					<h5 class="widget-title"><span>Latest Article</span></h5>
 					<!-- post-item -->
-                    @if ($articales->isNotEmpty())
-                        @foreach ($articales as $articale)
+                    @if ($latestArticales->isNotEmpty())
+                        @foreach ($latestArticales as $latestArticale)
                             
 					<ul class="list-unstyled widget-list">
 						<li class="d-flex widget-post align-items-center">
-							<a class="text-black" href="/blog/elements/">
+							<a class="text-black" wire:navigate  href="{{ route('articaleDetail',$latestArticale->id) }}">
 								<div class="widget-post-image flex-shrink-0 me-3">
-									<img class="rounded" loading="lazy" decoding="async" src="{{ asset('storage/'.$articale->image) }}" alt="Post Thumbnail">
+									<img class="rounded" loading="lazy" decoding="async" src="{{ asset('storage/'.$latestArticale->image) }}" alt="Post Thumbnail">
 								</div>
 							</a>
 							<div class="flex-grow-1">
-								<h5 class="h6 mb-0"><a class="text-black" href="blog-details.html">{{ $articale->title }}</a></h5>
-								<small>{{ $articale->created_at->format('M d, Y') }}</small>
+								<h5 class="h6 mb-0"><a wire:navigate class="text-black" href="{{ route('articaleDetail',$latestArticale->id) }}">{{ $latestArticale->title }}</a></h5>
+								<small>{{ $latestArticale->created_at->format('M d, Y') }}</small>
 							</div>
 						</li>
 					</ul>

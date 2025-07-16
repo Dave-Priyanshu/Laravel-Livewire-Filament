@@ -2,27 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArticaleResource\Pages;
-use App\Filament\Resources\ArticaleResource\RelationManagers;
-use App\Models\Articale;
-use App\Models\Category;
+use App\Filament\Resources\FaqResource\Pages;
+use App\Filament\Resources\FaqResource\RelationManagers;
+use App\Models\Faq;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ArticaleResource extends Resource
+class FaqResource extends Resource
 {
-    protected static ?string $model = Articale::class;
+    protected static ?string $model = Faq::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -30,16 +27,12 @@ class ArticaleResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required()->label('Title'),
-                Select::make('category_id')->options(Category::all()->pluck('name','id'))->searchable()->required()->label('Select Category'),
-                TextInput::make('author')->required()->label('Author'),
+                TextInput::make('question')->label('Questions')->required(),
+                RichEditor::make('answer')->label('Answer')->required()->columnSpan(2),
                 Select::make('status')->options([
                     1 => 'Active',
-                    0 => 'Inactive'
+                    0 => 'InActive'
                     ])->required(),
-                RichEditor::make('content')->columnSpan(2),
-                FileUpload::make('image')->columnSpan(2),
-                
             ]);
     }
 
@@ -47,11 +40,9 @@ class ArticaleResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->width(100),
-                TextColumn::make('title')->label('Title')->searchable(),
-                TextColumn::make('category_id')->label('category_id')->searchable(),
-                TextColumn::make('author')->label('Author'),
-                TextColumn::make('status')->label('status'),
+                TextColumn::make('question')->label('Question')->searchable(),
+                TextColumn::make('status')->label('Status'),
+
             ])
             ->filters([
                 //
@@ -76,9 +67,9 @@ class ArticaleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticales::route('/'),
-            'create' => Pages\CreateArticale::route('/create'),
-            'edit' => Pages\EditArticale::route('/{record}/edit'),
+            'index' => Pages\ListFaqs::route('/'),
+            'create' => Pages\CreateFaq::route('/create'),
+            'edit' => Pages\EditFaq::route('/{record}/edit'),
         ];
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArticaleResource\Pages;
-use App\Filament\Resources\ArticaleResource\RelationManagers;
-use App\Models\Articale;
-use App\Models\Category;
+use App\Filament\Resources\PageResource\Pages;
+use App\Filament\Resources\PageResource\RelationManagers;
+use App\Models\Page;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -14,15 +13,14 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ArticaleResource extends Resource
+class PageResource extends Resource
 {
-    protected static ?string $model = Articale::class;
+    protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -30,16 +28,13 @@ class ArticaleResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required()->label('Title'),
-                Select::make('category_id')->options(Category::all()->pluck('name','id'))->searchable()->required()->label('Select Category'),
-                TextInput::make('author')->required()->label('Author'),
+                TextInput::make('title')->label('Title')->required(),
+                RichEditor::make('content')->label('Content')->columnSpan(2),
+                FileUpload::make('image')->label('Image'),
                 Select::make('status')->options([
                     1 => 'Active',
-                    0 => 'Inactive'
-                    ])->required(),
-                RichEditor::make('content')->columnSpan(2),
-                FileUpload::make('image')->columnSpan(2),
-                
+                    0 => 'InActive'
+                    ]),
             ]);
     }
 
@@ -47,11 +42,11 @@ class ArticaleResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->width(100),
-                TextColumn::make('title')->label('Title')->searchable(),
-                TextColumn::make('category_id')->label('category_id')->searchable(),
-                TextColumn::make('author')->label('Author'),
-                TextColumn::make('status')->label('status'),
+                TextColumn::make('image')->label('Image'),
+                TextColumn::make('title')->label('Title'),
+                TextColumn::make('status')->label('Status'),
+                
+
             ])
             ->filters([
                 //
@@ -76,9 +71,9 @@ class ArticaleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticales::route('/'),
-            'create' => Pages\CreateArticale::route('/create'),
-            'edit' => Pages\EditArticale::route('/{record}/edit'),
+            'index' => Pages\ListPages::route('/'),
+            'create' => Pages\CreatePage::route('/create'),
+            'edit' => Pages\EditPage::route('/{record}/edit'),
         ];
     }
 }

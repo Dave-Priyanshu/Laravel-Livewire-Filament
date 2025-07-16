@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="{{ asset('front/plugins/font-awesome/fontawesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('front/plugins/font-awesome/brands.css') }}">
 	<link rel="stylesheet" href="{{ asset('front/plugins/font-awesome/solid.css') }}">
-
+	
 	<!-- # Main Style Sheet -->
 	<link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     @livewireStyles
@@ -44,8 +44,8 @@
 					<li class="nav-item "> <a class="nav-link" href="about.html">About Us</a></li>
 					<li class="nav-item "> <a wire:navigate class="nav-link" href="{{ route('servicesPage') }}">Services</a></li>
 					<li class="nav-item "> <a class="nav-link" wire:navigate href="{{ route('membersPage') }}">Our Team</a></li>
-					<li class="nav-item "><a class="nav-link " wire:navigate href="{{ route('articalePage')}}">Blog</a></li>
-					<li class="nav-item "><a class="nav-link " href="faq.html">FAQ</a></li>
+					<li class="nav-item "><a class="nav-link" wire:navigate href="{{ route('articalePage')}}">Blog</a></li>
+					<li class="nav-item "><a class="nav-link" wire:navigate href="{{ route('faqPage') }}">FAQ</a></li>
 				</ul>
 				<a href="#!" class="btn btn-outline-primary">Contact Us</a>				
 			</div>
